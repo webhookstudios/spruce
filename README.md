@@ -118,7 +118,7 @@ To remove it:
 sudo apt remove spruce
 ```
 
-You can also install and update it from [Grove](https://github.com/webhookstudios/spool).
+You can also install and update it from [Grove](https://github.com/webhookstudios/grove).
 
 ### From source
 
