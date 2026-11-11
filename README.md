@@ -1,5 +1,7 @@
 # Spruce
 
+*Part of the Sedge family of webhookstudios apps.*
+
 Select some files in the Files app, right-click them, and choose **Bulk Rename…**, **Resize Images…** or **Convert Images…**. Each opens a small window where you choose what to do, check it, and run it on the whole batch at once.
 
 ![Bulk Rename with a live preview of the new names](docs/screenshots/rename.png)
@@ -98,10 +100,10 @@ Spruce has only been tested on Ubuntu 26.04 with GNOME Shell 50.1 and Files 50.
 
 ### With the deb package (recommended)
 
-Download `spruce_1.1.0_all.deb` from the [latest release](https://github.com/webhookstudios/spruce/releases/latest), then install it:
+Download `spruce_1.2.0_all.deb` from the [latest release](https://github.com/webhookstudios/spruce/releases/latest), then install it:
 
 ```bash
-sudo apt install ./spruce_1.1.0_all.deb
+sudo apt install ./spruce_1.2.0_all.deb
 ```
 
 Close Files so it picks up the new options:
@@ -116,7 +118,7 @@ To remove it:
 sudo apt remove spruce
 ```
 
-You can also install and update it from [Spool](https://github.com/webhookstudios/spool).
+You can also install and update it from [Grove](https://github.com/webhookstudios/spool).
 
 ### From source
 
@@ -147,7 +149,7 @@ spruce rename FILE...
 
 ## How it works
 
-The Files part is a small Python extension in `nautilus/`, loaded by nautilus-python like Staple's. It adds the menu items and starts the `spruce` command with the selected paths. The app is Python with GTK 4 and libadwaita. Pillow reads and writes most formats. AVIF and HEIC go straight to libheif, which GNOME already installs, because Ubuntu's Pillow cannot handle them.
+The Files part is a small Python extension in `nautilus/`, loaded by nautilus-python like Wayside's. It adds the menu items and starts the `spruce` command with the selected paths. The app is Python with GTK 4 and libadwaita. Pillow reads and writes most formats. AVIF and HEIC go straight to libheif, which GNOME already installs, because Ubuntu's Pillow cannot handle them.
 
 | File | Purpose |
 |---|---|

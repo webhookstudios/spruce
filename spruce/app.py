@@ -37,7 +37,11 @@ class HomeWindow(Adw.ApplicationWindow):
     def __init__(self, app):
         super().__init__(application=app, title='Spruce', default_width=480, default_height=560)
         view = Adw.ToolbarView()
-        view.add_top_bar(Adw.HeaderBar())
+        header = Adw.HeaderBar()
+        menu = Gio.Menu()
+        menu.append('About Spruce', 'app.about')
+        header.pack_end(Gtk.MenuButton(icon_name='open-menu-symbolic', menu_model=menu, tooltip_text='Main menu'))
+        view.add_top_bar(header)
         self.toasts = Adw.ToastOverlay(child=view)
         self.set_content(self.toasts)
 
@@ -118,6 +122,18 @@ class SpruceApp(Adw.Application):
         super().__init__(application_id=APP_ID, flags=Gio.ApplicationFlags.NON_UNIQUE)
         self.tool, self.paths = tool, paths
         GLib.set_application_name('Spruce')
+
+    def do_startup(self):
+        Adw.Application.do_startup(self)
+        from . import sedge
+        sedge.apply()
+        about = Gio.SimpleAction.new('about', None)
+        about.connect('activate', lambda *_: Adw.AboutDialog(
+            application_name='Spruce', application_icon=APP_ID, version=__version__,
+            developer_name='webhookstudios', website='https://github.com/webhookstudios/spruce',
+            license_type=Gtk.License.GPL_2_0,
+            comments='Bulk rename, resize and convert, right from the Files app.\n\nPart of the Sedge family of apps.').present(self.get_active_window()))
+        self.add_action(about)
 
     def do_activate(self):
         if self.tool:

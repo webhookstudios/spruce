@@ -1,12 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
-  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4fcf8c"/><stop offset="1" stop-color="#11674a"/></linearGradient></defs>
-  <rect x="8" y="8" width="112" height="112" rx="26" fill="url(#bg)"/>
-  <!-- A small stack of files -->
-  <rect x="44" y="22" width="54" height="68" rx="7" fill="#bfeedb"/>
-  <rect x="37" y="29" width="54" height="68" rx="7" fill="#e4f8ef"/>
-  <rect x="30" y="36" width="54" height="70" rx="7" fill="#fff"/>
-  <!-- A spruce on the front one -->
-  <path d="M57 46l12 15h-6l10 13h-7l11 14H46l11-14h-7l10-13h-6z" fill="#11674a"/>
-  <rect x="54" y="88" width="6" height="9" rx="1.5" fill="#7a4b2a"/>
+  <defs>
+    <linearGradient id="face" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e6eee8"/>
+      <stop offset="1" stop-color="#d2dfd6"/>
+    </linearGradient>
+  </defs>
+  <circle cx="64" cy="67" r="54" fill="#1e2b26" fill-opacity=".16"/>
+  <circle cx="64" cy="63" r="54" fill="url(#face)"/>
+  <circle cx="64" cy="63" r="52.5" fill="none" stroke="#247268" stroke-width="3"/>
+  <g transform="translate(64 63) scale(2.55) translate(-12 -12)" fill="none" stroke="#247268"
+     stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 20h4L18.5 9.5l-4-4L4 16z M12.5 7.5l4 4 M14 20h6"/>
+  </g>
 </svg>

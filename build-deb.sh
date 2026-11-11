@@ -19,6 +19,8 @@ install -d "$STAGE/DEBIAN" "$STAGE/usr/bin" "$STAGE/usr/share/spruce/spruce" \
     "$STAGE/usr/share/icons/hicolor/scalable/apps" \
     "$STAGE/usr/share/doc/spruce"
 install -m 644 "$ROOT"/spruce/*.py "$STAGE/usr/share/spruce/spruce/"
+cp -r "$ROOT/spruce/sedge" "$STAGE/usr/share/spruce/spruce/"
+find "$STAGE/usr/share/spruce/spruce/sedge" -type f -exec chmod 644 {} +
 install -m 755 "$ROOT/bin/spruce" "$STAGE/usr/bin/spruce"
 install -m 644 "$ROOT/nautilus/spruce_nautilus.py" "$STAGE/usr/share/nautilus-python/extensions/"
 install -m 644 "$ROOT/data/$APP_ID.svg" "$STAGE/usr/share/icons/hicolor/scalable/apps/"
@@ -36,6 +38,11 @@ Copyright: $(date +%Y) webhookstudios
 License: GPL-2+
  On Debian systems, the full text of the GNU General Public License
  version 2 can be found in /usr/share/common-licenses/GPL-2.
+
+Files: */sedge/fonts/*
+Copyright: 2023 The Young Serif Project Authors; 2015 The Public Sans Project Authors
+License: OFL-1.1
+ The full license texts are in the sedge/fonts/ folder.
 EOT
 chmod 644 "$STAGE/usr/share/doc/spruce/copyright"
 
