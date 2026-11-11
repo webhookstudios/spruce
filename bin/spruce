@@ -1,0 +1,15 @@
+#!/usr/bin/python3
+# Starts Spruce. SPRUCE_DIR points at the folder holding the spruce package
+# (a source checkout, for example); the deb puts it in /usr/share/spruce.
+import os
+import sys
+
+here = os.path.dirname(os.path.realpath(__file__))
+for d in (os.environ.get('SPRUCE_DIR'), os.path.join(here, '..'), '/usr/share/spruce'):
+    if d and os.path.isfile(os.path.join(d, 'spruce', 'app.py')):
+        sys.path.insert(0, os.path.abspath(d))
+        break
+
+from spruce.app import main  # noqa: E402
+
+sys.exit(main())

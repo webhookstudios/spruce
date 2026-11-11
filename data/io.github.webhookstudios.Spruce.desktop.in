@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Spruce
+GenericName=Batch File Tools
+Comment=Rename files in bulk, and resize or convert images
+Exec=@EXEC@
+Icon=@ICON@
+Terminal=false
+StartupNotify=true
+Categories=Utility;GTK;GNOME;FileTools;
+Keywords=rename;bulk;batch;resize;convert;image;photo;webp;avif;heic;powertoys;
