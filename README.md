@@ -17,10 +17,11 @@ Files already has its own **Rename…** item for several files. Spruce's is call
 
 ## Bulk Rename
 
-Everything you change shows up straight away in the preview, with the old name, the new name and whether it can be renamed.
+Everything you change shows up straight away in the preview, with the old name, the new name and whether it can be renamed. The steps run in the order of the table below: a new name first, then find and replace, case, added text, numbering and the extension.
 
 | Option | What it does |
 |---|---|
+| New name | Replaces each whole name with your text and keeps the extension, so `IMG_4021.JPG` can become `Holiday 01.JPG`. Typing a name for several items switches on numbering once, so the names stay different |
 | Find and replace | Plain text or a regular expression (use `\1`, `\2` for groups). Choose whether to match case, replace every match or only the first, and whether to look in the name, the extension or both |
 | Add before, Add after | Text added to the start or end of the name |
 | Letter case | lowercase, UPPERCASE, Title Case or Sentence case |
@@ -97,10 +98,10 @@ Spruce has only been tested on Ubuntu 26.04 with GNOME Shell 50.1 and Files 50.
 
 ### With the deb package (recommended)
 
-Download `spruce_1.0.0_all.deb` from the [latest release](https://github.com/webhookstudios/spruce/releases/latest), then install it:
+Download `spruce_1.1.0_all.deb` from the [latest release](https://github.com/webhookstudios/spruce/releases/latest), then install it:
 
 ```bash
-sudo apt install ./spruce_1.0.0_all.deb
+sudo apt install ./spruce_1.1.0_all.deb
 ```
 
 Close Files so it picks up the new options:

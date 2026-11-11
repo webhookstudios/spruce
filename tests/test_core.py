@@ -39,6 +39,13 @@ class RenameTest(unittest.TestCase):
         self.assertEqual(self.names('IMG_1.jpg', 'IMG_2.jpg', find='img_', replace='Trip '),
                          ['Trip 1.jpg', 'Trip 2.jpg'])
 
+    def test_new_name(self):
+        self.assertEqual(self.names('DSC1.JPG', 'DSC2.jpg', title='Holiday', number=True, ext_mode='lower'),
+                         ['Holiday 01.jpg', 'Holiday 02.jpg'])
+        self.assertEqual(self.names('b.txt', title='{n}-note', number_start=5, number_padding=1), ['5-note.txt'])
+        items, _ = self.items('c1.txt', 'c2.txt', title='Same')
+        self.assertEqual({i.status for i in items}, {'conflict'})
+
     def test_match_case_and_first_only(self):
         self.assertEqual(self.names('aAa.txt', find='a', replace='b', match_case=True), ['bAb.txt'])
         self.assertEqual(self.names('xaa.txt', find='a', replace='b', replace_all=False), ['xba.txt'])

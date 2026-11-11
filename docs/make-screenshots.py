@@ -37,7 +37,8 @@ def pump(sec=0.5):
 
 
 def shot(win, name):
-    pump(0.8)
+    win.set_focus(None)  # no half-finished focus animation in the picture
+    pump(1.5)
     w, h = win.get_width(), win.get_height()
     snap = Gtk.Snapshot()
     Gtk.WidgetPaintable.new(win).snapshot(snap, w, h)
@@ -54,12 +55,7 @@ def run(app):
     win = RenameWindow(app, files)
     win.set_default_size(1100, 640)
     win.present()
-    win.find.set_text('IMG_')
-    win.replace.set_text('Iceland ')
-    win.suffix.set_text(' {taken}')
-    win.find.set_text('IMG_\\d+')
-    win.regex.set_active(True)
-    win.replace.set_text('Iceland')
+    win.title_entry.set_text('Iceland {taken}')
     win.number.set_enable_expansion(True)
     win.ext_mode.set_selected(1)
     for item in win.items:

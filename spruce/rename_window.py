@@ -45,6 +45,7 @@ class RenameWindow(Adw.ApplicationWindow):
         self.items = [Item(p) for p in dict.fromkeys(paths) if os.path.lexists(p)]
         self.given = list(self.items)
         self._pending = 0
+        self._auto_numbered = False
 
         self.toasts = Adw.ToastOverlay()
         view = Adw.ToolbarView()
@@ -80,6 +81,13 @@ class RenameWindow(Adw.ApplicationWindow):
     def _build_options(self):
         page = Adw.PreferencesPage()
         page.set_size_request(380, -1)
+
+        g = Adw.PreferencesGroup(title='New name', description='Replaces the whole name and keeps the '
+                                 'extension. Leave empty to keep each name.')
+        self.title_entry = Adw.EntryRow(title='Rename all to')
+        self.title_entry.connect('changed', self._on_title)
+        g.add(self.title_entry)
+        page.add(g)
 
         g = Adw.PreferencesGroup(title='Find and replace')
         self.find = Adw.EntryRow(title='Find')
@@ -137,7 +145,8 @@ class RenameWindow(Adw.ApplicationWindow):
         g.add(tokens)
         page.add(g)
 
-        for w in (self.find, self.replace, self.prefix, self.suffix, self.number_separator, self.new_ext,
+        for w in (self.title_entry, self.find, self.replace, self.prefix, self.suffix, self.number_separator,
+                  self.new_ext,
                   self.date_format):
             w.connect('changed', self._changed)
         for w in (self.regex, self.match_case, self.replace_all):
@@ -149,12 +158,22 @@ class RenameWindow(Adw.ApplicationWindow):
         self.number.connect('notify::enable-expansion', self._changed)
         return page
 
+    def _on_title(self, entry):
+        """Typing a new name for several items turns numbering on, once, so
+        the names stay different. Switched off again, it stays off."""
+        text = entry.get_text()
+        if text and not self._auto_numbered and '{n}' not in text \
+                and sum(i.enabled for i in self.items) > 1:
+            self._auto_numbered = True
+            self.number.set_enable_expansion(True)
+
     def _copy_token(self, _row, token):
         self.get_clipboard().set(token)
         self.toasts.add_toast(Adw.Toast(title=f'Copied {token}', timeout=1))
 
     def _reset(self):
-        for w in (self.find, self.replace, self.prefix, self.suffix, self.new_ext):
+        self._auto_numbered = False
+        for w in (self.title_entry, self.find, self.replace, self.prefix, self.suffix, self.new_ext):
             w.set_text('')
         self.number_separator.set_text(' ')
         self.date_format.set_text('%Y-%m-%d')
@@ -173,6 +192,7 @@ class RenameWindow(Adw.ApplicationWindow):
 
     def options(self):
         return Options(
+            title=self.title_entry.get_text(),
             find=self.find.get_text(), replace=self.replace.get_text(),
             regex=self.regex.get_active(), match_case=self.match_case.get_active(),
             replace_all=self.replace_all.get_active(),

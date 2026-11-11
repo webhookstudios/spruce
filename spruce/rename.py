@@ -35,6 +35,7 @@ SORTS = ['name', 'modified', 'taken', 'given']
 
 @dataclass
 class Options:
+    title: str = ''        # replaces the whole name (not the extension)
     find: str = ''
     replace: str = ''
     regex: bool = False
@@ -108,7 +109,7 @@ class Item:
 
 
 def needs_photo(opts):
-    text = opts.find + opts.replace + opts.prefix + opts.suffix + opts.new_ext
+    text = opts.title + opts.find + opts.replace + opts.prefix + opts.suffix + opts.new_ext
     return opts.sort == 'taken' or any(t in text for t in ('{taken}', '{camera}', '{width}', '{height}'))
 
 
@@ -186,6 +187,8 @@ def new_name(item, number, opts, pattern):
     """The new name for one item. pattern is the compiled find pattern or
     None. Raises ValueError for a bad regular expression replacement."""
     stem, ext = item.stem, item.ext
+    if opts.title:
+        stem = _expand(opts.title, item, number, opts)
     if pattern is not None:
         replacement = _expand(opts.replace, item, number, opts, escape=True)
         if not opts.regex:
