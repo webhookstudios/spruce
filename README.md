@@ -100,10 +100,10 @@ Spruce has only been tested on Ubuntu 26.04 with GNOME Shell 50.1 and Files 50.
 
 ### With the deb package (recommended)
 
-Download `spruce_1.2.0_all.deb` from the [latest release](https://github.com/webhookstudios/spruce/releases/latest), then install it:
+Download `spruce_1.2.1_all.deb` from the [latest release](https://github.com/webhookstudios/spruce/releases/latest), then install it:
 
 ```bash
-sudo apt install ./spruce_1.2.0_all.deb
+sudo apt install ./spruce_1.2.1_all.deb
 ```
 
 Close Files so it picks up the new options:

@@ -26,7 +26,7 @@ LOSSY = {'JPEG', 'WEBP', 'AVIF', 'HEIC'}
 ANIMATED = {'GIF', 'WEBP', 'PNG'}
 
 PRESETS = [
-    # key, label, width, height (PowerToys' defaults)
+    # key, label, width, height (common sizes)
     ('small', 'Small', 854, 480),
     ('medium', 'Medium', 1366, 768),
     ('large', 'Large', 1920, 1080),

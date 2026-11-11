@@ -8,4 +8,4 @@ Icon=@ICON@
 Terminal=false
 StartupNotify=true
 Categories=Utility;GTK;GNOME;FileTools;
-Keywords=rename;bulk;batch;resize;convert;image;photo;webp;avif;heic;powertoys;
+Keywords=rename;bulk;batch;resize;convert;image;photo;webp;avif;heic;
